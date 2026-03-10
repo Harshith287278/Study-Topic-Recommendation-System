@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDY PATH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- AUTHENTICATION SCREEN -->
+    <div id="authScreen" class="auth-wrapper">
+            <div class="main-title">STUDY PATH</div>
+        <div class="auth-container">
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+            <h2>Login</h2>
+            <input type="email" id="loginEmail" placeholder="Email Address">
+            <input type="password" id="loginPassword" placeholder="Password">
+            <button onclick="login()">Login to Study</button>
+
+            <div class="auth-switch">
+                Don't have an account?
+                <span onclick="showSignup()">Create Account</span>
+            </div>
+        </div>
+
+        <!-- SIGNUP FORM -->
+        <div id="signupForm" class="hidden">
+            <h2>Join Us</h2>
+            <input type="text" id="signupName" placeholder="Full Name">
+            <input type="email" id="signupEmail" placeholder="Email Address">
+            <input type="password" id="signupPassword" placeholder="Password">
+            <button onclick="signup()">Get Started</button>
+
+            <div class="auth-switch">
+                Already have an account?
+                <span onclick="showLogin()">Login here</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD SCREEN -->
+    <div id="dashboardScreen" class="dashboard hidden">
+        <header class="dash-header">
+            <h1>📚 STUDY PATH Dashboard</h1>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <span style="font-weight: 600; color: #4a5568;">Welcome, <span id="userName">User</span>!</span>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <main class="dash-content">
+            <!-- SIDEBAR CONTROLS -->
+            <aside class="dash-sidebar">
+                <h2 class="section-title">Configure Search</h2>
+
+
+                <label for="level" style="font-size: 0.9rem; color: #4a5568; margin-top: 15px; display: block;">Select
+                    Your Stage</label>
+                <select id="level">
+                    <option value="Fresher">🌱 Fresher (New start)</option>
+                    <option value="Beginner">📚 Beginner (Learning basics)</option>
+                    <option value="Intermediate">⚙️ Intermediate (Building skills)</option>
+                    <option value="Advanced">🏆 Advanced (Expert level)</option>
+                </select>
+
+                <div style="margin-top: 15px;">
+                    <span class="clear-link" onclick="clearCompleted()">Clear All</span>
+                    <label for="completed" style="font-size: 0.9rem; color: #4a5568;">Completed Topics</label>
+                </div>
+                <textarea id="completed" rows="4"
+                    placeholder="Enter topics you already know (comma separated) e.g. Variable, Loop"></textarea>
+
+                <!-- Progress Tracker -->
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <span>Overall Progress</span>
+                        <span id="progressText">0% Completed</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div id="progressFill" class="progress-bar-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Global Statistics -->
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span id="statTotal" class="stat-value">0</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-item">
+                        <span id="statDone" class="stat-value">0</span>
+                        <span class="stat-label">Done</span>
+                    </div>
+                    <div class="stat-item" style="grid-column: span 2;">
+                        <span id="statLeft" class="stat-value">0</span>
+                        <span class="stat-label">Left to Study</span>
+                    </div>
+                </div>
+
+
+                <p style="margin-top: 15px; font-size: 0.8rem; color: #a0aec0; line-height: 1.4;">
+                    * Select your preferences and click the button to get study recommendations.
+                </p>
+            </aside>
+
+            <!-- RESULTS AREA -->
+            <section class="dash-results">
+                <div class="results-header">
+                    <h2 class="section-title" style="margin-bottom:0;">Recommended for You</h2>
+                    <button class="download-btn" onclick="downloadPlan()">Download Study Plan</button>
+                </div>
+                <div id="recommendations">
+                    <!-- Recommendations will be injected here -->
+                </div>
+
+                <!-- NEW: Visual Subject Picker at the bottom -->
+                <div class="subject-selector-area">
+                    <h2 class="section-title">Select Subject</h2>
+                    <div id="subjectGrid" class="subject-grid">
+                        <!-- Subject boxes will be injected here by script.js -->
+                    </div>
+                    <button onclick="recommend()" class="get-rec-btn">Get Recommendations</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
